@@ -6,7 +6,15 @@ This repository is part of the ["Build and Manage your next Node.Js Database usi
 
 - Node.js (12.2 or higher)
 
-## Run the project
+## Build and run the project
+
+Run the database migrations:
+
+```
+$ npx prisma migrate dev
+```
+
+Run the project:
 
 ```
 $ npm run dev
