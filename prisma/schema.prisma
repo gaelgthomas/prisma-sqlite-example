@@ -1,0 +1,67 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  // We set an `id` variable
+  // With a `Int` type (number)
+  // Then, we set the Prisma decorators:
+  // - @id (because it's an ID)
+  // - @default(autoincrement()) (default value is auto-incremented)
+  id Int @id @default(autoincrement())
+
+  // We set an `email` variable
+  // With a `String` type
+  // Then, we set the Prisma decorator:
+  // - @unique (because we want the user to be unique
+  // based on the email - two users can't have the same)
+  email String @unique
+
+  // We set an `username` variable
+  // With a `String` type
+  username String
+
+  // We set an `tweets` variable
+  // With a `Tweet[]` type (one-to-many relationship)
+  // Because each user can have between
+  // 0 and an infinite number of tweets
+  tweets Tweet[]
+}
+
+model Tweet {
+  // We set an `id` variable
+  // With an `Int` type (number)
+  // Then, we set the Prisma decorators:
+  // - @id (because it's an ID)
+  // - @default(autoincrement()) (default value is auto-incremented)
+  id Int @id @default(autoincrement())
+
+  // Save the tweet creation time
+  createdAt DateTime @default(now())
+
+  // We set an `text` variable
+  // With a `String` type
+  text String
+
+  // We set an `userId` variable
+  // With a `Int` type (number)
+  // It will link the `id` of the `User` model
+  userId Int
+
+  // We set an `user` variable
+  // With a `User` type (many-to-one relationship)
+  // Because each tweet have an author
+  // This author is an `User`
+  // We link the `User` to a `Tweet` based on:
+  // - the `userId` in the `Tweet` model
+  // - the `id` in the `User` model
+  user User @relation(fields: [userId], references: [id])
+}
