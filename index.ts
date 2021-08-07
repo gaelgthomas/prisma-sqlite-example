@@ -11,7 +11,8 @@ async function main() {
     },
   });
 
-  console.log(`New User: ${newUser}`);
+  console.log("New User:");
+  console.log(newUser);
 
   // We create a new tweet and we link it to our new user
   const firstTweet = await prisma.tweet.create({
@@ -21,7 +22,8 @@ async function main() {
     },
   });
 
-  console.log(`First tweet: ${firstTweet}\n`);
+  console.log("First tweet:");
+  console.log(firstTweet);
 
   // We fetch the new user again (by its unique email address)
   // and we ask to fetch its tweets at the same time
