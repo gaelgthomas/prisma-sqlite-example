@@ -58,7 +58,7 @@ model Tweet {
 
   // We set an `user` variable
   // With a `User` type (many-to-one relationship)
-  // Because each tweet have an author
+  // Because each tweet has an author
   // This author is an `User`
   // We link the `User` to a `Tweet` based on:
   // - the `userId` in the `Tweet` model
